@@ -31,9 +31,9 @@ export class SwitchesComponent implements OnInit {
     })
     // nos suscribimos a todo el formulario para recibir los cambios de una vez  
     this.myForm.valueChanges
-      .subscribe( form => {
-        delete form.conditions;
-        this.person = form;
+      .subscribe( ({conditions, ...rest}) => {
+        
+        this.person = rest;
       });
 
   }

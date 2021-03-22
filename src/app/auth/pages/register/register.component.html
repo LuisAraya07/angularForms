@@ -1,0 +1,124 @@
+<h2>Reactive validations</h2>
+<hr>
+
+
+<div class="row">
+    <div class="col">
+        <form autocomplete="off" [formGroup] = "myForm" (ngSubmit) = "submitForm()">
+            <!-- Name -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                       class="form-control"
+                       placeholder="User name"
+                       formControlName = "name">
+
+                <span class="form-text  text-danger"
+                      *ngIf="notValid('name')">
+
+                    Debe ser en formato de nombre y apellido
+                </span>
+                </div>
+            </div>
+
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                       class="form-control"
+                       placeholder="Email"
+                       formControlName = "email">
+                       <span class="form-text  text-danger"
+                            *ngIf="notValid('email')">
+                            {{emailErrorMsg}}
+                        </span>
+                </div>
+            </div>
+
+
+            <!-- username -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                       class="form-control"
+                       placeholder="Code username"
+                       formControlName="username">
+                       <span class="form-text  text-danger"
+                            *ngIf="notValid('username')">
+                            username can't be strider
+                        </span>
+            
+                </div>
+            </div>
+            <!-- password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                       class="form-control"
+                       placeholder="Password"
+                       formControlName="password">
+                       <span class="form-text  text-danger"
+                            *ngIf="notValid('password')">
+                            Password debe ser mayor de 6 caracteres.
+                        </span>
+                </div>
+            </div>
+
+             <!-- password 2 -->
+             <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirm</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                       class="form-control"
+                       placeholder="Confirm password"
+                       formControlName="password2">
+                       <span class="form-text  text-danger"
+                            *ngIf="notValid('password2')">
+                            Los password deben ser iguales
+                        </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" 
+                            class="btn btn-primary float-end"
+                            [disabled] = "myForm.pending"
+                            >Create</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+<h2>Form valid: {{ myForm.valid }}</h2>
+<h2>Form status: {{ myForm.status }}</h2>
+
+<h2>Form pending: {{ myForm.pending }}</h2>
+
+
+<h2>Form errors: {{ myForm.errors | json}}</h2>
+
+
+<h5>Name: </h5>
+<pre>{{ myForm.controls.name.errors | json}}</pre>
+
+
+
+
+<h5>Email: </h5>
+<pre>{{ myForm.controls.email.errors | json}}</pre>
+<h5>Usernam: </h5>
+<pre>{{ myForm.controls.username.errors | json}}</pre>
+<h5>Password: </h5>
+<pre>{{ myForm.controls.password.errors | json}}</pre>
+<h5>Password2: </h5>
+<pre>{{ myForm.controls.password2.errors | json}}</pre>
